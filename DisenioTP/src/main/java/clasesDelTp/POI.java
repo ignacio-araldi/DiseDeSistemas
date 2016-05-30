@@ -9,7 +9,7 @@ public class POI {
 	private int longitud=0,latitud=0,altura,comuna,distancia,radioLimite;
 	private String etiqueta,rubro;		
 	private Horario disponibilidadHoraria;
-	
+	private String nombre;
 	
 	public POI() {
 		//FRUTA
@@ -232,4 +232,3 @@ public class POI {
 //{
 //return (obtenerComuna()==comuna);
 //}
-}
