@@ -1,5 +1,5 @@
 package clasesDelTp;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +7,7 @@ public class POI {
 
 	private Boolean validez;
 	private double longitud=0,latitud=0,distancia=0;
-	private int altura,comuna,radioLimite;
+	private int altura,comuna,radioLimite,id=0;
 	private String calle, tipo,nombre;		
 	private Horario disponibilidadHoraria;
 	private Set<String> palabrasClaves;
@@ -201,6 +201,34 @@ public class POI {
 		if((fechaActual.getHours()<disponibilidadHoraria.getHoraCierre())&&(fechaActual.getHours()>disponibilidadHoraria.getHoraApertura())&&(fechaActual.getDay()>=disponibilidadHoraria.getDiaApertura())&&(fechaActual.getDay()<disponibilidadHoraria.getDiaCierre()))
 			return true;
 		else return false;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
+
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+
+	public void setDistancia(double distancia) {
+		this.distancia = distancia;
+	}
+
+	public void setDisponibilidadHoraria(Horario disponibilidadHoraria) {
+		this.disponibilidadHoraria = disponibilidadHoraria;
+	}
+
+	public void setPalabrasClaves(Set<String> palabrasClaves) {
+		this.palabrasClaves = palabrasClaves;
 	}
 
 }

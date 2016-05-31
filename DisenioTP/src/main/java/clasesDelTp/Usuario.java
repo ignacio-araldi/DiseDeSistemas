@@ -1,14 +1,15 @@
 package clasesDelTp;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Usuario {
 
 	
 		private POI miPoi,POIaBuscar;
-		private Sistema buscador;
+		private Terminal sistema;
 
 		public Usuario() {
-			
+			sistema=new Terminal();
 		}
 		
 		//GET / SET
@@ -36,8 +37,16 @@ public class Usuario {
 		
 		//OTROS METODOS
 		
-	 	public Set<POI> buscarPunto(String texto){
-	 		return buscador.buscarPoi(texto);
+		public Set<POI> buscarPoi(String palabra){  
+			Set<POI> poisAux=new HashSet<POI>();
+			poisAux.clear();
+			for (POI poi:sistema.getPois()){
+				if(poi.getPalabrasClaves().contains(palabra))
+				{
+					poisAux.add(poi);
+				}
+			}
+			return poisAux;
 		}
 		
 		Boolean meQuedaCerca(POI unPoi){
@@ -47,15 +56,15 @@ public class Usuario {
 		Boolean estaDisponible(POI poi){
 			return poi.calculoDeDisponibilidad();
 		}
-		
-		Boolean estaDisponible(CGP poi ,String x){ //ACA FALTA LA OTRA OPCION DE DISPONIBILIDAD DE CGP PERO TENGO QUE VER BIEN LO DE LOS SERVICIOS
-			if((poi.getServicio()==x)&&(poi.calculoDeDisponibilidad()))
-			{
-				return true;
-			}
-			else
-				return false;
+
+		public Terminal getsistema() {
+			return sistema;
 		}
+
+		public void setsistema(Terminal sistema) {
+			this.sistema = sistema;
+		}
+
 		
 	}
 

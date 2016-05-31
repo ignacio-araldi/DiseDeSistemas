@@ -4,11 +4,10 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class Administrador {
+public class Administrador extends Usuario{
 	
 	private String usuario, contrasenia;
-	private POI poiAux;
-	private Sistema sistema;
+	private Terminal sistema;
 
 	
 	public Administrador(String usu, String contra){
@@ -41,68 +40,39 @@ public class Administrador {
 		sistema.getPois().add(unPOI);
 	}
 	
-	public void modificarPOI(POI unPOI){
-		
-	}
-	
-	public void eliminarPOI(POI POIaEliminar){
-		sistema.getPois().remove(POIaEliminar);
-	}
-	
-
-	public static void main(String[] args)
-	{
-		int opcion;
-		Boolean valido=false;
-		String usu,cont,texto;
-		Sistema sistema=new Sistema();
-		Scanner capt= new Scanner(System.in);
-		POI miPoi = new POI();
-		Kiosco unKiosco = new Kiosco(8,17,0,5);
-		Usuario yo = new Usuario();
-		yo.setMiPoi(miPoi);
-		Set<POI> pois;
-		pois = new HashSet<POI>();
-		
-		System.out.println("Bienvenido al sistema de busqueda de POIS\n\n");
-		
-		do{
-			
-		System.out.println("Ingrese Usuario");
-		usu=capt.nextLine();
-		System.out.println("Ingrese Contrasenia");
-		cont=capt.nextLine();
-		valido = sistema.logueo(usu,cont);
-		
-		}while(!valido);
-		
-		valido=false;
-		System.out.println("Logueo exitoso\n");
-		do{
-		System.out.println("Elija opcion:\n\n1-Buscar Punto\n2-Calcular cercania (coordenada geografica)\n3-Calcular disponibilidad\n4-Salir");
-		opcion=capt.nextInt();
-		if (opcion==1){
-			System.out.println("Ingrese texto a buscar\n\n");
-			texto=capt.nextLine();
-			pois=sistema.buscarPoi(texto);
-			if(pois.size()==0)
-				System.out.println("Sin resultados\n");
-			else
-			{
-				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n");//algunos datos de ejemplo
-				}
+	public Boolean modificarPOI(int id, String nombre){//y demas datos
+		for(POI poi:sistema.getPois())
+		{
+			if(poi.getId()==id){
+				poi.setNombre(nombre);
+				return true;
 			}
 		}
-		
-		if (opcion==3){
-			
-			
-		
+		return false;
+	}
+	public POI obtenerPoiPorId(int id){
+		POI poiAux=new POI();
+		for(POI poi:sistema.getPois())
+		{
+			if(poi.getId()==id){
+				poiAux= poi;
+			}
 		}
-		
-		}while(opcion!=4);
+		return poiAux;
+	}
+	
+	public Boolean eliminarPOI(int id){
+		if(obtenerPoiPorId(id).getId()!=0)
+		{
+			sistema.getPois().remove(obtenerPoiPorId(id));
+			return true;
+		}
+		else return false;
+	}
+	/*
+	public Boolean logueo(String usu,String cont){
+		return sistema.logueo(usu, cont);
+	}
 
-
-}
+	*/
 }
