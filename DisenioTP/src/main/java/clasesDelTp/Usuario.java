@@ -47,7 +47,7 @@ public class Usuario {
 		}*/
 		
 		Boolean meQuedaCerca(POI unPoi){
-			return unPoi.calculoDeCercania(unPoi);
+			return unPoi.estaDentroDeLaComuna(unPoi);
 		}
 
 		Boolean estaDisponible(POI poi){

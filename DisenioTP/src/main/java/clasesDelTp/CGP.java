@@ -9,10 +9,6 @@ public class CGP extends POI {
     		setDisponibilidadHoraria(horaA,horaC,diaA, diaC);
         } 
 		
-		public Boolean calculoDeCercania(POI unPoi){
-			return (estaDentroDeComuna(unPoi.getComuna()));
-		}
-		
 		public String getServicio() {
 			return servicio;
 		}
@@ -21,9 +17,13 @@ public class CGP extends POI {
 			this.servicio = servicio;
 		}
 		
-		public Boolean calculoDeCercania(POI unPoi){
-			return (comuna=unPoi.getComuna());
-		}
+		// repeticion del metodo calculoDeCercania 
 		
+		
+	    public Boolean estaDentroDeLaComuna(POI unPoi){
+				return (elNroDeLaComunaIngresadaCoincideConElDeLaComunaDelPOI(unPoi.getComuna())) & (super.estaDentroDeLaComuna(unPoi));
+			}
+	    
+
 		
 }

@@ -1,4 +1,5 @@
 package clasesDelTp;
+import javax.swing.JOptionPane;
 
 import java.util.Date;
 public class POI {
@@ -6,7 +7,8 @@ public class POI {
 	private String calle;
 	private String tipo;
 	private Boolean validez;
-	private int longitud=0,latitud=0,altura,comuna,distancia,radioLimite;
+	private double longitud=0,latitud=0,distancia;
+	private int altura,numeroComuna,radioLimite;
 	private String etiqueta,rubro;		
 	private Horario disponibilidadHoraria;
 	private String nombre;
@@ -72,7 +74,7 @@ public class POI {
 
 
 
-	public int getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
 
@@ -84,7 +86,7 @@ public class POI {
 
 
 
-	public int getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
 
@@ -109,18 +111,18 @@ public class POI {
 
 
 	public int getComuna() {
-		return comuna;
+		return numeroComuna;
 	}
 
 
 
 	public void setComuna(int comuna) {
-		this.comuna = comuna;
+		this.numeroComuna = comuna;
 	}
 
 
 
-	public int getDistancia() {
+	public double getDistancia() {
 		return distancia;
 	}
 
@@ -179,23 +181,23 @@ public class POI {
 	}
 	
 	
-	//OTROS METODOS
+	//OTROS METODOS, FUNCIONES DE LA ENTREGA A 
 	
 	public Boolean esValido(){
 		return ((nombre.trim().length()==0)&&(longitud!=0)&&(latitud!=0));
 	}
 	
-	public int aCuantoEstoyDe(POI unPoi){
+	public double aCuantoEstoyDe(POI unPoi){
 		return distancia;
 	}
 	
-	public Boolean calculoDeCercania(POI unPoi){
+	public Boolean estaDentroDeLaComuna(POI unPoi){
 		return (aCuantoEstoyDe(unPoi)<=radioLimite);
 	}
 	
-	public Boolean estaDentroDeComuna(int comuna)
+	public Boolean elNroDeLaComunaIngresadaCoincideConElDeLaComunaDelPOI(int comuna)
 	{
-		return (this.comuna==comuna);
+		return (this.numeroComuna==comuna);
 	}
 	
 	public Boolean calculoDeDisponibilidad(){
@@ -203,6 +205,26 @@ public class POI {
 		if((fechaActual.getHours()<disponibilidadHoraria.getHoraCierre())&&(fechaActual.getHours()>disponibilidadHoraria.getHoraApertura())&&(fechaActual.getDay()>=disponibilidadHoraria.getDiaApertura())&&(fechaActual.getDay()<disponibilidadHoraria.getDiaCierre()))
 			return true;
 		else return false;
+	}
+	
+	public void distanciaEntreDosPOIs(){
+		
+		double longitud2, latitud2;
+		
+		// el usuario ingresa las coordenadas 
+		longitud = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto A:"));
+
+		latitud = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto A:"));
+
+		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B:"));
+
+		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B:"));
+
+		// hace el procesamiento, resta las distancias
+		distancia = Math.hypot(longitud2-longitud, latitud2-latitud);
+		
+		//muestra los resultados
+		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+longitud+","+latitud+") y B("+longitud2+","+latitud2+") es ="+distancia);
 	}
 
 }
