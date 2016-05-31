@@ -1,27 +1,27 @@
 package clasesDelTp;
 import javax.swing.JOptionPane;
-
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 public class POI {
 
-	private String calle;
-	private String tipo;
 	private Boolean validez;
-	private double longitud=0,latitud=0,distancia;
-	private int altura,numeroComuna,radioLimite;
-	private String etiqueta,rubro;		
+	private double longitud=0,latitud=0,distancia=0;
+	private int altura,comuna,radioLimite;
+	private String calle, tipo,nombre;		
 	private Horario disponibilidadHoraria;
-	private String nombre;
-	
+	private Set<String> palabrasClaves;
+
 	public POI() {
-		//FRUTA
+
 		longitud = 5;
 		latitud = 6;
 		nombre = "UTN";
 		calle = "Medrano";
 		altura = 200;
 		distancia=10;
-		//
+		
+		palabrasClaves = new HashSet<String>();
 		
 		radioLimite=5;
 	}
@@ -111,13 +111,13 @@ public class POI {
 
 
 	public int getComuna() {
-		return numeroComuna;
+		return comuna;
 	}
 
 
 
 	public void setComuna(int comuna) {
-		this.numeroComuna = comuna;
+		this.comuna = comuna;
 	}
 
 
@@ -139,35 +139,20 @@ public class POI {
 	}
 
 
-
 	public void setRadioLimite(int radioLimite) {
 		this.radioLimite = radioLimite;
 	}
 
 
-
-	public String getEtiqueta() {
-		return etiqueta;
+	public Set<String> getPalabrasClaves() {
+		return palabrasClaves;
 	}
 
 
 
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
+	public void agregarPalabrasClaves(String palabraClave) {
+		this.palabrasClaves.add(palabraClave);
 	}
-
-
-
-	public String getRubro() {
-		return rubro;
-	}
-
-
-
-	public void setRubro(String rubro) {
-		this.rubro = rubro;
-	}
-
 
 
 	public Horario getDisponibilidadHoraria() {
@@ -181,24 +166,35 @@ public class POI {
 	}
 	
 	
-	//OTROS METODOS, FUNCIONES DE LA ENTREGA A 
+	//OTROS METODOS
 	
 	public Boolean esValido(){
 		return ((nombre.trim().length()==0)&&(longitud!=0)&&(latitud!=0));
 	}
 	
-	public double aCuantoEstoyDe(POI unPoi){
-		return distancia;
+	public int aCuantoEstoyDe(POI unPoi){
+		/*
+		double longitud2, latitud2;
+		
+		
+		// el usuario ingresa las coordenadas de dónde quiere ir
+		// las coordenadas de donde se encuentra, longitud y latitud, ya estan con su getter y setter
+
+		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B al que quiere ir:"));
+
+		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
+*/
+		// hace el procesamiento, resta las distancias
+		distancia = Math.hypot(unPoi.getLongitud()-longitud, unPoi.getLatitud()-latitud)/100;
+		
+		//muestra los resultados
+		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+longitud+","+latitud+") y B("+unPoi.getLongitud()+","+unPoi.getLatitud()+") es ="+distancia);
 	}
 	
-	public Boolean estaDentroDeLaComuna(POI unPoi){
+	public Boolean calculoDeCercania(POI unPoi){
 		return (aCuantoEstoyDe(unPoi)<=radioLimite);
 	}
 	
-	public Boolean elNroDeLaComunaIngresadaCoincideConElDeLaComunaDelPOI(int comuna)
-	{
-		return (this.numeroComuna==comuna);
-	}
 	
 	public Boolean calculoDeDisponibilidad(){
 		Date fechaActual = new Date();
@@ -206,49 +202,8 @@ public class POI {
 			return true;
 		else return false;
 	}
-	
-	public void distanciaEntreDosPOIs(){
-		
-		double longitud2, latitud2;
-		
-		// el usuario ingresa las coordenadas de dÃ³nde quiere ir
-		// las coordenadas de donde se encuentra, longitud y latitud, ya estan con su getter y setter
-
-		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B al que quiere ir:"));
-
-		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
-
-		// hace el procesamiento, resta las distancias
-		distancia = Math.hypot(longitud2-longitud, latitud2-latitud);
-		
-		//muestra los resultados
-		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+longitud+","+latitud+") y B("+longitud2+","+latitud2+") es ="+distancia);
-	}
 
 }
 
-//public Boolean estoyAMenosDe(int metros, POI unPoi){
-//Point poi2 = new Point(this.latitud(), this.longitud());
-//Point poi2 = new Point(unPoi.latitud(),unPoi.longitud());	
-//
-//return difEsMenorA(poi1,poi2,metros);
-//}
 
-//public Boolean difEsMenorA(Point primero, Point segundo, int metros){
-//return(primero.distance(segundo)<(metros/1000));
-//}
-//public Boolean calculoDeCercania(Ubicacion unaUbicacion){
-//return (estoyAMenosDe(unaUbicacion,500);  //	
 
-//}
-
-//public Boolean estoyAMenosDe(int mettro, Ubicacion algunaUbicacion){
-//Point poi1 = new Point(this.latitud(),this.longitud());
-//Point po12 = new Point(algunaUbicacion.latitud(), algunaUbicacion.longitud());
-//return difEsMenorA(poi1,poi2,metros);
-//	}
-
-//public Boolean estaDentroDeComuna(int comuna)
-//{
-//return (obtenerComuna()==comuna);
-//}

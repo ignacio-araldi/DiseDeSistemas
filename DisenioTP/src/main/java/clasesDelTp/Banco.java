@@ -1,12 +1,10 @@
 package clasesDelTp;
 
-import java.util.Date;
-
 public class Banco extends POI{
 
-	    public Banco () {
-	    		super();
-	    	    setDisponibilidadHoraria(10,15,0,5);
-	        } 
+    public Banco (int horaA,int horaC, int diaA, int diaC) {
+    	super();
+	    setDisponibilidadHoraria(horaA,horaC,diaA,diaC); 
 	
+    }
 }

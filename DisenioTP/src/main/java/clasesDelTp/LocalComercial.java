@@ -4,8 +4,5 @@ public class LocalComercial extends POI {
     public LocalComercial () {
     		super();
         } 
-	public Boolean estaDentroDeLaComuna(POI unPoi){
-		return (aCuantoEstoyDe(unPoi)<=getRadioLimite());
-	}
 	
 }

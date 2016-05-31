@@ -19,8 +19,5 @@ public class Ubicacion{
    public double longitud(){
 	return this.longitud;
 }
- /*  public Point coordenadas(){
-  Point point = new Point(this.latitud(), this.longitud());
-   return point;
-   }*/
+
 }

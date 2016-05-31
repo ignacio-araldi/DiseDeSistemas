@@ -1,10 +1,11 @@
 package clasesDelTp;
+import java.util.Set;
 
 public class Usuario {
 
 	
 		private POI miPoi,POIaBuscar;
-		private Administrador admin;
+		private Sistema buscador;
 
 		public Usuario() {
 			
@@ -32,22 +33,15 @@ public class Usuario {
 			POIaBuscar = pOIaBuscar;
 		}
 
-		public Administrador getAdmin() {
-			return admin;
-		}
-
-		public void setAdmin(Administrador admin) {
-			this.admin = admin;
-		}
 		
 		//OTROS METODOS
-	/*	public POI buscarPunto(String palabra){
-			admin.resolverBusqueda(palabra);
-			return POIaBuscar;
-		}*/
+		
+	 	public Set<POI> buscarPunto(String texto){
+	 		return buscador.buscarPoi(texto);
+		}
 		
 		Boolean meQuedaCerca(POI unPoi){
-			return unPoi.estaDentroDeLaComuna(unPoi);
+			return miPoi.calculoDeCercania(unPoi);
 		}
 
 		Boolean estaDisponible(POI poi){
@@ -65,3 +59,4 @@ public class Usuario {
 		
 	}
 
+//lalala

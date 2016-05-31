@@ -2,7 +2,7 @@ package clasesDelTp;
 
 public class ParadaColectivo extends POI{
 	
-	public ParadaColectivo () {
+	public ParadaColectivo (int nuevoNro) {
 			super();
 			setRadioLimite(1);
 		}
@@ -10,5 +10,5 @@ public class ParadaColectivo extends POI{
     public Boolean calculoDisponibilidad () { 
     		return true;
     	}
-    
+
 	}

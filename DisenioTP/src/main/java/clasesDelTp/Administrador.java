@@ -1,84 +1,44 @@
 package clasesDelTp;
-
-
+import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.List;
+
 
 public class Administrador {
 	
-	private int usuario, contrasenia;
-	
-	private List<POI> Pois,result;
-	private List<LocalComercial> locales;
-	private Set<String> etiquetas,rubros;
-	
-	public Administrador(){
-		
+	private String usuario, contrasenia;
+	private POI poiAux;
+	private Sistema sistema;
 
+	
+	public Administrador(String usu, String contra){
+
+		usuario=usu;
+		contrasenia=contra;
 	}
 	
 	//GET / SET
 	
-	public int getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(int usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
-	public int getContrasenia() {
+	public String getContrasenia() {
 		return contrasenia;
 	}
 
-	public void setContrasenia(int contrasenia) {
+	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
 
-	public List<POI> getPois() {
-		return Pois;
-	}
-
-	public void setPois(List<POI> pois) {
-		Pois = pois;
-	}
-
-	public List<POI> getResult() {
-		return result;
-	}
-
-	public void setResult(List<POI> result) {
-		this.result = result;
-	}
-
-	public List<LocalComercial> getLocales() {
-		return locales;
-	}
-
-	public void setLocales(List<LocalComercial> locales) {
-		this.locales = locales;
-	}
-
-	public Set<String> getEtiquetas() {
-		return etiquetas;
-	}
-
-	public void setEtiquetas(Set<String> etiquetas) {
-		this.etiquetas = etiquetas;
-	}
-
-	public Set<String> getRubros() {
-		return rubros;
-	}
-
-	public void setRubros(Set<String> rubros) {
-		this.rubros = rubros;
-	}
-	
 	//OTROS METODOS
 	
 	public void agregarPOI(POI unPOI){
-		Pois.add(unPOI);
+		sistema.getPois().add(unPOI);
 	}
 	
 	public void modificarPOI(POI unPOI){
@@ -86,43 +46,63 @@ public class Administrador {
 	}
 	
 	public void eliminarPOI(POI POIaEliminar){
-		Pois.remove(POIaEliminar);
+		sistema.getPois().remove(POIaEliminar);
 	}
 	
-	public Set<String> todasLasEtiquetas(){
-		etiquetas.removeAll(etiquetas);
-		for (POI poi: Pois){
-			etiquetas.add(poi.getEtiqueta());
-		}
-		return etiquetas;
-	}
-	
-	public Set<String> todosLosRubros(){
-		rubros.removeAll(rubros);
-		for (POI poi: Pois){
-			rubros.add(poi.getRubro());
-		}
-		return rubros;
-	}
-	
-	public List<POI> resolverBusqueda(String palabra){
-		if(etiquetas.contains(palabra))
-		{
-			return poisPorEtiqueta(palabra);
-		}
-		//if()
-		return poisPorEtiqueta(palabra);
+
+	public static void main(String[] args)
+	{
+		int opcion;
+		Boolean valido=false;
+		String usu,cont,texto;
+		Sistema sistema=new Sistema();
+		Scanner capt= new Scanner(System.in);
+		POI miPoi = new POI();
+		Kiosco unKiosco = new Kiosco(8,17,0,5);
+		Usuario yo = new Usuario();
+		yo.setMiPoi(miPoi);
+		Set<POI> pois;
+		pois = new HashSet<POI>();
 		
-	}
-	
-	public List<POI> poisPorEtiqueta(String etiqueta){
-		for (POI poi: Pois){
-			if(poi.getEtiqueta()==etiqueta)
-			result.add(poi);
+		System.out.println("Bienvenido al sistema de busqueda de POIS\n\n");
+		
+		do{
+			
+		System.out.println("Ingrese Usuario");
+		usu=capt.nextLine();
+		System.out.println("Ingrese Contrasenia");
+		cont=capt.nextLine();
+		valido = sistema.logueo(usu,cont);
+		
+		}while(!valido);
+		
+		valido=false;
+		System.out.println("Logueo exitoso\n");
+		do{
+		System.out.println("Elija opcion:\n\n1-Buscar Punto\n2-Calcular cercania (coordenada geografica)\n3-Calcular disponibilidad\n4-Salir");
+		opcion=capt.nextInt();
+		if (opcion==1){
+			System.out.println("Ingrese texto a buscar\n\n");
+			texto=capt.nextLine();
+			pois=sistema.buscarPoi(texto);
+			if(pois.size()==0)
+				System.out.println("Sin resultados\n");
+			else
+			{
+				for(POI poi:pois){
+					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n");//algunos datos de ejemplo
+				}
+			}
 		}
-		return result;
-	}
+		
+		if (opcion==3){
+			
+			
+		
+		}
+		
+		}while(opcion!=4);
 
 
-
+}
 }
