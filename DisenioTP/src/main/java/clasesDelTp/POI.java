@@ -211,14 +211,12 @@ public class POI {
 		
 		double longitud2, latitud2;
 		
-		// el usuario ingresa las coordenadas 
-		longitud = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto A:"));
+		// el usuario ingresa las coordenadas de dónde quiere ir
+		// las coordenadas de donde se encuentra, longitud y latitud, ya estan con su getter y setter
 
-		latitud = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto A:"));
+		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B al que quiere ir:"));
 
-		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B:"));
-
-		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B:"));
+		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
 
 		// hace el procesamiento, resta las distancias
 		distancia = Math.hypot(longitud2-longitud, latitud2-latitud);
