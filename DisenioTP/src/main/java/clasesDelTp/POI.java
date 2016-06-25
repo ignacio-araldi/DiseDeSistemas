@@ -7,10 +7,11 @@ public class POI {
 
 	private Boolean validez;
 	private double longitud=0,latitud=0,distancia=0;
-	private int altura,comuna,radioLimite,id=0;
+	private int altura,radioLimite,id=0;
 	private String calle, tipo,nombre;		
 	private Horario disponibilidadHoraria;
 	private Set<String> palabrasClaves;
+	public Cercania tipoCercania;
 
 	public POI() {
 
@@ -24,6 +25,7 @@ public class POI {
 		palabrasClaves = new HashSet<String>();
 		
 		radioLimite=5;
+		tipoCercania=new MismaComuna();
 	}
 	
 	public String getNombre() {
@@ -109,19 +111,6 @@ public class POI {
 	}
 
 
-
-	public int getComuna() {
-		return comuna;
-	}
-
-
-
-	public void setComuna(int comuna) {
-		this.comuna = comuna;
-	}
-
-
-
 	public double getDistancia() {
 		return distancia;
 	}
@@ -172,7 +161,7 @@ public class POI {
 		return ((nombre.trim().length()==0)&&(longitud!=0)&&(latitud!=0));
 	}
 	
-	public int aCuantoEstoyDe(POI unPoi){
+	public int aCuantoEstoyDe(double latitudDestino, double longitudDestino){
 		/*
 		double longitud2, latitud2;
 		
@@ -185,14 +174,14 @@ public class POI {
 		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
 */
 		// hace el procesamiento, resta las distancias
-		distancia = Math.hypot(unPoi.getLongitud()-longitud, unPoi.getLatitud()-latitud)/100;
+		distancia = Math.hypot(longitudDestino-longitud, latitudDestino-latitud)/100;
 		
 		//muestra los resultados
-		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+longitud+","+latitud+") y B("+unPoi.getLongitud()+","+unPoi.getLatitud()+") es ="+distancia);
+		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+longitud+","+latitud+") y B("+longitudDestino+","+latitudDestino+") es ="+distancia);
 	}
 	
 	public Boolean calculoDeCercania(POI unPoi){
-		return (aCuantoEstoyDe(unPoi)<=radioLimite);
+		return tipoCercania.calculoDeCercania(latitud,longitud, unPoi);
 	}
 	
 	

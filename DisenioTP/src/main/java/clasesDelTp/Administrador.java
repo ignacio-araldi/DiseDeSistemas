@@ -4,8 +4,14 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class Administrador extends Usuario{
+public class Administrador {
 	
+	public Administrador(String usuario, String contrasenia, Terminal sistema) {
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.sistema = sistema;
+	}
+
 	private String usuario, contrasenia;
 	private Terminal sistema;
 
@@ -14,6 +20,9 @@ public class Administrador extends Usuario{
 
 		usuario=usu;
 		contrasenia=contra;
+	}
+	public Administrador(){
+
 	}
 	
 	//GET / SET
@@ -35,6 +44,16 @@ public class Administrador extends Usuario{
 	}
 
 	//OTROS METODOS
+	
+	public Boolean logueo(String usu,String cont){
+		for (Administrador admin:sistema.getAdmins()){
+			if((admin.getUsuario().equals(usu))&&(admin.getContrasenia().equals(cont)))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public void agregarPOI(POI unPOI){
 		sistema.getPois().add(unPOI);
@@ -69,10 +88,4 @@ public class Administrador extends Usuario{
 		}
 		else return false;
 	}
-	/*
-	public Boolean logueo(String usu,String cont){
-		return sistema.logueo(usu, cont);
-	}
-
-	*/
 }

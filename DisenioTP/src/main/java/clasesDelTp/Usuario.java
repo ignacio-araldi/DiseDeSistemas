@@ -33,6 +33,23 @@ public class Usuario {
 		public void setPOIaBuscar(POI pOIaBuscar) {
 			POIaBuscar = pOIaBuscar;
 		}
+		
+		public Terminal getSistema() {
+			return sistema;
+		}
+
+		public void setSistema(Terminal sistema) {
+			this.sistema = sistema;
+		}
+
+		public Terminal getsistema() {
+			return sistema;
+		}
+
+		public void setsistema(Terminal sistema) {
+			this.sistema = sistema;
+		}
+
 
 		
 		//OTROS METODOS
@@ -57,15 +74,8 @@ public class Usuario {
 			return poi.calculoDeDisponibilidad();
 		}
 
-		public Terminal getsistema() {
-			return sistema;
-		}
 
-		public void setsistema(Terminal sistema) {
-			this.sistema = sistema;
-		}
 
-		
 	}
 
 //lalala

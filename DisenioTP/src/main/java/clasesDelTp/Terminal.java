@@ -20,17 +20,49 @@ public class Terminal {
 
 
 	
-	public Boolean logueo(String usu,String cont){
-		for (Administrador admin:admins){
-			if((admin.getUsuario().equals(usu))&&(admin.getContrasenia().equals(cont)))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 	public Set<POI> getPois(){
 		return pois;
+	}
+	
+
+	public Set<POI> getPoisAux() {
+		return poisAux;
+	}
+
+
+
+	public void setPoisAux(Set<POI> poisAux) {
+		this.poisAux = poisAux;
+	}
+
+
+
+	public Set<Administrador> getAdmins() {
+		return admins;
+	}
+
+
+
+	public void setAdmins(Set<Administrador> admins) {
+		this.admins = admins;
+	}
+
+
+
+	public Administrador getAdminAux() {
+		return adminAux;
+	}
+
+
+
+	public void setAdminAux(Administrador adminAux) {
+		this.adminAux = adminAux;
+	}
+
+
+
+	public void setPois(Set<POI> pois) {
+		this.pois = pois;
 	}
 	
 
@@ -39,7 +71,6 @@ public class Terminal {
 		int opcion,valor;
 		Boolean logueado=false;
 		String usu,cont,texto;
-		Terminal sistema=new Terminal();
 		Scanner capt= new Scanner(System.in);
 		POI miPoi = new POI();
 		POI poiAux = new POI();
@@ -54,18 +85,18 @@ public class Terminal {
 		opcion=capt.nextInt();
 		if(opcion==1)
 		{
+			Administrador yo = new Administrador();
 			do
 			{
 			System.out.println("Ingrese Usuario");
 			usu=capt.nextLine();
 			System.out.println("Ingrese Contrasenia");
 			cont=capt.nextLine();
-			logueado = sistema.logueo(usu,cont);
+			logueado = yo.logueo(usu,cont);
 
 			}while(!logueado);
 			System.out.println("Logueo exitoso\n");
-			Administrador yo = new Administrador(usu,cont);
-			yo.setMiPoi(miPoi);
+
 			do{
 			System.out.println("Elija opcion:\n\n1-Agregar Poi\n2-Modificar Poi\n3-Eliminar Poi\n4-Salir\n\n");
 
@@ -177,5 +208,8 @@ public class Terminal {
 		}
 
 }
+
+
+
 	
 }
