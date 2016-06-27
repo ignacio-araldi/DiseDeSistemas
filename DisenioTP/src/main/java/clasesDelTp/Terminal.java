@@ -8,14 +8,12 @@ public class Terminal {
 	
 	private Set<POI> pois,poisAux;
 	private Set<Administrador> admins;
-	private Administrador adminAux;
+
 	
 	public Terminal(){
 		pois = new HashSet<POI>();
 		poisAux = new HashSet<POI>();
 		admins = new HashSet<Administrador>();
-		adminAux=new Administrador("pepe","argento");
-		admins.add(adminAux);
 	}
 
 
@@ -48,19 +46,6 @@ public class Terminal {
 	}
 
 
-
-	public Administrador getAdminAux() {
-		return adminAux;
-	}
-
-
-
-	public void setAdminAux(Administrador adminAux) {
-		this.adminAux = adminAux;
-	}
-
-
-
 	public void setPois(Set<POI> pois) {
 		this.pois = pois;
 	}
@@ -74,24 +59,31 @@ public class Terminal {
 		Scanner capt= new Scanner(System.in);
 		POI miPoi = new POI();
 		POI poiAux = new POI();
-
+		Terminal sistema=new Terminal();
 		Set<POI> pois;
 		pois = new HashSet<POI>();
+		Administrador adminAux;
+		adminAux=new Administrador("pepe","argento",sistema);
+		sistema.getAdmins().add(adminAux);
 		
+		Conexion conex = new Conexion();
+		
+		conex.dbConnect("jdbc:sqlserver://localhost;databaseName=bdpois;integratedSecurity=true","select * from Tabla_CGPs");
+
 		System.out.println("Bienvenido al sistema de busqueda de POIS\n\n");
 
 
-		System.out.println("Es usted administrador?\n-1 Si\n -2 No\n");
+		System.out.println("Es usted administrador?\n-1 Si\n-2 No\n");
 		opcion=capt.nextInt();
 		if(opcion==1)
 		{
-			Administrador yo = new Administrador();
+			Administrador yo = new Administrador(sistema);
 			do
 			{
 			System.out.println("Ingrese Usuario");
-			usu=capt.nextLine();
+			usu=capt.next();
 			System.out.println("Ingrese Contrasenia");
-			cont=capt.nextLine();
+			cont=capt.next();
 			logueado = yo.logueo(usu,cont);
 
 			}while(!logueado);
@@ -104,7 +96,7 @@ public class Terminal {
 			if (opcion==1){
 				
 				System.out.println("Ingrese nombre de poi\n\n");
-				texto=capt.nextLine();
+				texto=capt.next();
 				poiAux.setNombre(texto);
 				//y demas datos...
 				yo.agregarPOI(poiAux);
@@ -113,7 +105,7 @@ public class Terminal {
 				System.out.println("Ingrese id de poi\n\n");
 				valor=capt.nextInt();
 				System.out.println("Ingrese nombre de poi\n\n");
-				texto=capt.nextLine();
+				texto=capt.next();
 				if(yo.modificarPOI(valor,texto))
 				{
 					System.out.println("Modificado exitosamente\n\n");
@@ -144,14 +136,14 @@ public class Terminal {
 		opcion=capt.nextInt();
 		if (opcion==1){
 			System.out.println("Ingrese texto a buscar\n\n");
-			texto=capt.nextLine();
+			texto=capt.next();
 			pois=yo.buscarPoi(texto);
 			if(pois.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
 				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n");//algunos datos de ejemplo
+					poi.listar();
 				}
 			}
 		}
@@ -159,14 +151,14 @@ public class Terminal {
 		if (opcion==2){
 			
 			System.out.println("Ingrese texto a buscar\n\n");
-			texto=capt.nextLine();
+			texto=capt.next();
 			pois=yo.buscarPoi(texto);
 			if(pois.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
 				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n"+"La distancia a "+poi.getNombre()+"es:"+yo.getMiPoi().aCuantoEstoyDe(poi)+"\n");
+					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getUbicacion().getCalle()+"\nAltura"+poi.getUbicacion().getAltura()+"\n\n"+"La distancia a "+poi.getNombre()+"es:"+yo.getMiPoi().aCuantoEstoyDe(poi.getUbicacion())+"\n");
 					if(yo.getMiPoi().calculoDeCercania(poi))
 						
 						System.out.println("Usted esta cerca de "+poi.getNombre()+"\n");
@@ -181,14 +173,14 @@ public class Terminal {
 		
 		if (opcion==3){
 			System.out.println("Ingrese texto a buscar\n\n");
-			texto=capt.nextLine();
+			texto=capt.next();
 			pois=yo.buscarPoi(texto);
 			if(pois.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
 				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n");//algunos datos de ejemplo
+					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getUbicacion().getCalle()+"\nAltura"+poi.getUbicacion().getAltura()+"\n\n");//algunos datos de ejemplo
 					if(poi.calculoDeDisponibilidad())
 						
 						System.out.println(""+poi.getNombre()+" esta disponible ahora mismo\n");

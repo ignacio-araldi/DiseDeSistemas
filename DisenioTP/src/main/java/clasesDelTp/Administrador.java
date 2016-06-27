@@ -1,8 +1,7 @@
 package clasesDelTp;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
 
+import java.util.HashSet;
+import java.util.Set;
 
 public class Administrador {
 	
@@ -15,14 +14,8 @@ public class Administrador {
 	private String usuario, contrasenia;
 	private Terminal sistema;
 
-	
-	public Administrador(String usu, String contra){
-
-		usuario=usu;
-		contrasenia=contra;
-	}
-	public Administrador(){
-
+	public Administrador(Terminal sistema){
+		this.sistema = sistema;
 	}
 	
 	//GET / SET
