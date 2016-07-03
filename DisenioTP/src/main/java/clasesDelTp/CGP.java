@@ -59,7 +59,7 @@ public class CGP extends POI {
 		{
 	         System.out.println("ID     Comuna   Zonas                                   Director                      Domicilio                     Telefono    Servicios\n");
 
-	            System.out.println(id+"      "+super.getUbicacion().getComuna()+"        "+director+""+domicilio+""+telefono+""+servicios);
+	            System.out.println(id+"      "+super.getComuna()+"        "+zonas.substring(0, 40)+""+director.substring(0, 30)+""+domicilio.substring(0, 30)+""+telefono+"    "+servicios);
 
 	         
 		}

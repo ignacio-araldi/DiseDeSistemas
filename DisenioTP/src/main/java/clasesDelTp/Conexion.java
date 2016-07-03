@@ -18,7 +18,7 @@ public class Conexion
          ResultSet rs = statement.executeQuery(queryString);
          System.out.println("ID     Comuna   Zonas                                   Director                      Domicilio                     Telefono    Servicios\n");
          while (rs.next()) {
-            System.out.println(rs.getString(1)+"      "+rs.getString(2)+"        "+rs.getString(3)+""+rs.getString(4)+""+rs.getString(5)+""+rs.getString(6));
+            System.out.println(rs.getString(1)+"      "+rs.getString(2)+"        "+rs.getString(3).substring(0, 40)+""+rs.getString(4).substring(0, 30)+""+rs.getString(5).substring(0, 30)+""+rs.getString(6)+"    "+rs.getString(7));
 
          }
          System.out.println("\n");
@@ -28,4 +28,3 @@ public class Conexion
    }
    
 }
-//         String queryString = "select * from sysobjects where type='u'";

@@ -6,13 +6,15 @@ import java.util.Set;
 
 public class Terminal {
 	
-	private Set<POI> pois,poisAux;
+	private Set<POI> pois;	
+	private Set<CGP> cgps;
+	
 	private Set<Administrador> admins;
 
 	
 	public Terminal(){
 		pois = new HashSet<POI>();
-		poisAux = new HashSet<POI>();
+		cgps = new HashSet<CGP>();
 		admins = new HashSet<Administrador>();
 	}
 
@@ -21,19 +23,6 @@ public class Terminal {
 	public Set<POI> getPois(){
 		return pois;
 	}
-	
-
-	public Set<POI> getPoisAux() {
-		return poisAux;
-	}
-
-
-
-	public void setPoisAux(Set<POI> poisAux) {
-		this.poisAux = poisAux;
-	}
-
-
 
 	public Set<Administrador> getAdmins() {
 		return admins;
@@ -60,11 +49,10 @@ public class Terminal {
 		POI miPoi = new POI();
 		POI poiAux = new POI();
 		Terminal sistema=new Terminal();
-		Set<POI> pois;
-		pois = new HashSet<POI>();
 		Administrador adminAux;
 		adminAux=new Administrador("pepe","argento",sistema);
 		sistema.getAdmins().add(adminAux);
+		Set<POI> poisAux = new HashSet<POI>();
 		
 		Conexion conex = new Conexion();
 		
@@ -137,14 +125,15 @@ public class Terminal {
 		if (opcion==1){
 			System.out.println("Ingrese texto a buscar\n\n");
 			texto=capt.next();
-			pois=yo.buscarPoi(texto);
-			if(pois.size()==0)
+			poisAux=yo.buscarPoi(texto);
+			if(poisAux.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
-				for(POI poi:pois){
+				for(POI poi:poisAux){
 					poi.listar();
 				}
+				poisAux.clear();
 			}
 		}
 		
@@ -152,13 +141,13 @@ public class Terminal {
 			
 			System.out.println("Ingrese texto a buscar\n\n");
 			texto=capt.next();
-			pois=yo.buscarPoi(texto);
-			if(pois.size()==0)
+			poisAux=yo.buscarPoi(texto);
+			if(poisAux.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
-				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getUbicacion().getCalle()+"\nAltura"+poi.getUbicacion().getAltura()+"\n\n"+"La distancia a "+poi.getNombre()+"es:"+yo.getMiPoi().aCuantoEstoyDe(poi.getUbicacion())+"\n");
+				for(POI poi:poisAux){
+					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n"+"La distancia a "+poi.getNombre()+"es:"+yo.getMiPoi().aCuantoEstoyDe(poi.getLatitud(),poi.getLongitud())+"\n");
 					if(yo.getMiPoi().calculoDeCercania(poi))
 						
 						System.out.println("Usted esta cerca de "+poi.getNombre()+"\n");
@@ -167,6 +156,7 @@ public class Terminal {
 						System.out.println("Usted esta lejos de "+poi.getNombre()+"\n");
 
 				}
+				poisAux.clear();
 			}
 		
 		}
@@ -174,13 +164,13 @@ public class Terminal {
 		if (opcion==3){
 			System.out.println("Ingrese texto a buscar\n\n");
 			texto=capt.next();
-			pois=yo.buscarPoi(texto);
-			if(pois.size()==0)
+			poisAux=yo.buscarPoi(texto);
+			if(poisAux.size()==0)
 				System.out.println("Sin resultados\n");
 			else
 			{
-				for(POI poi:pois){
-					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getUbicacion().getCalle()+"\nAltura"+poi.getUbicacion().getAltura()+"\n\n");//algunos datos de ejemplo
+				for(POI poi:poisAux){
+					System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n");//algunos datos de ejemplo
 					if(poi.calculoDeDisponibilidad())
 						
 						System.out.println(""+poi.getNombre()+" esta disponible ahora mismo\n");
@@ -189,13 +179,14 @@ public class Terminal {
 						System.out.println(""+poi.getNombre()+" no esta disponible ahora mismo\n");
 
 				}
+				poisAux.clear();
 			}
 		}
 		
 		else if(opcion!=4)
 			System.out.println("Elija una opcion de las ofrecidas\n\n");
 		
-		pois.clear();
+		poisAux.clear();
 		}while(opcion!=4);
 		}
 

@@ -11,12 +11,13 @@ public class POI {
 	private Horario disponibilidadHoraria;
 	private Set<String> palabrasClaves;
 	public Cercania tipoCercania;
-	private Ubicacion ubicacion;
+	private double latitud=0,longitud=0;
+	private int comuna,altura;
+	private String calle;
 
 	public POI() {
 
 		nombre = "UTN";
-		ubicacion= new Ubicacion();
 		palabrasClaves = new HashSet<String>();
 		
 		radioLimite=5;
@@ -59,15 +60,42 @@ public class POI {
 	}
 
 
+	
+	public double getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+	public double getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
+	public int getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(int comuna) {
+		this.comuna = comuna;
+	}
+	public int getAltura() {
+		return altura;
+	}
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+	public String getCalle() {
+		return calle;
+	}
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
 
 
 	public int getRadioLimite() {
 		return radioLimite;
-	}
-	
-	public Ubicacion getUbicacion()
-	{
-		return ubicacion;
 	}
 
 
@@ -101,10 +129,10 @@ public class POI {
 	//OTROS METODOS
 	
 	public Boolean esValido(){
-		return ((nombre.trim().length()==0)&&(ubicacion.getLongitud()!=0)&&(ubicacion.getLatitud()!=0));
+		return ((nombre.trim().length()==0)&&(getLongitud()!=0)&&(getLatitud()!=0));
 	}
 	
-	public double aCuantoEstoyDe(Ubicacion unaUbicacion){
+	public double aCuantoEstoyDe(double latitud, double longitud){
 		double distancia=0;
 		/*
 		double longitud2, latitud2;
@@ -118,15 +146,15 @@ public class POI {
 		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
 */
 		// hace el procesamiento, resta las distancias
-		distancia = Math.hypot(unaUbicacion.getLongitud()-ubicacion.getLongitud(), unaUbicacion.getLatitud()-ubicacion.getLatitud())/100;
+		distancia = Math.hypot(longitud-this.longitud, latitud-this.latitud)/100;
 		
 		//muestra los resultados
-		//JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+ubicacion.getLongitud()+","+ubicacion.getLatitud()+") y B("+unaUbicacion.getLongitud()+","+unaUbicacion.getLatitud()+") es ="+distancia);
+		//JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+getLongitud()+","+getLatitud()+") y B("+unaUbicacion.getLongitud()+","+unaUbicacion.getLatitud()+") es ="+distancia);
 		return distancia;
 	}
 	
 	public Boolean calculoDeCercania(POI unPoi){
-		return tipoCercania.calculoDeCercania(ubicacion, unPoi);
+		return tipoCercania.calculoDeCercania(latitud, longitud, unPoi);
 	}
 	
 	
@@ -155,7 +183,7 @@ public class POI {
 	
 	public void listar()
 	{
-		System.out.println("Nombre:"+nombre+"\nCalle:"+ubicacion.getCalle()+"\nAltura"+ubicacion.getAltura()+"\n\n");//algunos datos de ejemplo
+		System.out.println("Nombre:"+nombre+"\nCalle:"+getCalle()+"\nAltura"+getAltura()+"\n\n");//algunos datos de ejemplo
 	}
 
 }

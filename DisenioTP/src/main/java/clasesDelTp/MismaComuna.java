@@ -1,8 +1,12 @@
 package clasesDelTp;
 
 public class MismaComuna implements Cercania{
-	public Boolean calculoDeCercania(Ubicacion unaUbicacion,POI unPoi){
-		return (unPoi.getUbicacion().getComuna()==unaUbicacion.getComuna());
+	public Boolean calculoDeCercania(int comuna,POI unPoi){
+		return (unPoi.getComuna()==comuna);
 	}
-
+	
+	public Boolean calculoDeCercania(double longitud, double latitud,POI unPoi){
+		return true;
+	}
+	
 }

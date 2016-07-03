@@ -1,6 +1,8 @@
 package clasesDelTp;
 
 public interface Cercania {
-	Boolean calculoDeCercania(Ubicacion ubicacion ,POI unPoi);
+	Boolean calculoDeCercania(double latitud,double longitud ,POI unPoi);
+	
+	Boolean calculoDeCercania(int comuna,POI unPoi);
 	
 }
