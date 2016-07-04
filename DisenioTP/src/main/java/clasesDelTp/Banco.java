@@ -102,4 +102,9 @@ Banco obj = new Banco("Banco Galicia", 5.23445 , 3.234, "Devoto", "Pedro Alfonso
 BancoConsultado obj = new BancoConsultado("Banco Patagonia",);
 String jsonString = gson.toJson(obj);
 System.out.println("JSON:" + jsonString);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3fc4542bebedeb94374ee53e7c913b6984fa65cb
 }
