@@ -36,38 +36,39 @@ public class Banco extends POI{
 		this.serviciosC = serviciosC;
     }
     	
-    	public String getGerente() {
-    		return gerente;
-    	}
+    public String getGerente() {
+    	return gerente;
+    }
+    
 	public void setGerente(String gerente) {
-    		this.gerente = gerente;
-    	}
+    	this.gerente = gerente;
+    }
 
 	public String getSucursal() {
 		return sucursal;
 	}
-public void setSucursal(String sucursal) {
+	
+	public void setSucursal(String sucursal) {
 		this.sucursal = sucursal;
 	}
 
-public Set<String> getserviciosC() {
-	return serviciosC;
-}
-public void agregarservicios(String servicio) {
-	this.serviciosC.add(servicio);
-}
+	public Set<String> getserviciosC() {
+		return serviciosC;
+	}
+	
+	public void agregarservicios(String servicio) {
+		this.serviciosC.add(servicio);
+	}
 
 
-public void ConsultarBanco (String nombreBanco, String serv ){
-	nombreBanco
-	
-	
-	
-	
-	
-}
+	public void ConsultarBanco (String nombreBanco, String serv ){
+		//no se que va aca 
+	}
 
-//creo algunos bancos para luego conultar
+}	
+	
+/*
+//creo algunos bancos para luego consultar
 
 Banco obj = new Banco("Banco Patagonia", 2.3445 , 3.234, "Caballito", "Marcelo Polino", );
 Banco obj = new Banco("Banco Nacion", 2.6456 , 7.2355, "Mataderos", "Fabian Doman", );
@@ -80,7 +81,7 @@ Banco obj = new Banco("Banco Galicia", 5.23445 , 3.234, "Devoto", "Pedro Alfonso
 
 
 
-/*static class BancoConsultado{
+static class BancoConsultado{
  private String banco;
  private String x;
  private String y;
@@ -96,15 +97,11 @@ Banco obj = new Banco("Banco Galicia", 5.23445 , 3.234, "Devoto", "Pedro Alfonso
 	servicios.addAll(serviciosC);
 	
 }
-/*
+
  
  
 BancoConsultado obj = new BancoConsultado("Banco Patagonia",);
 String jsonString = gson.toJson(obj);
 System.out.println("JSON:" + jsonString);
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 3fc4542bebedeb94374ee53e7c913b6984fa65cb
-}
+}*/
