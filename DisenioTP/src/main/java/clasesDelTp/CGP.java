@@ -12,7 +12,15 @@ public class CGP extends POI {
     		tipoCercania=new MismaComuna();
 
         }
+		public CGP()
+		{
+			
+		}
 
+		public CGP (String nombre,int latitud, int longitud) {
+			super(nombre, latitud,longitud);
+
+        }
 
 		public String getZonas() {
 			return zonas;

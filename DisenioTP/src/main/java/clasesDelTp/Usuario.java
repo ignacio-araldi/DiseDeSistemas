@@ -5,7 +5,7 @@ import java.util.Set;
 public class Usuario {
 
 	
-		private POI miPoi,POIaBuscar;
+		private POI miPoi;
 		private Terminal sistema;
 
 		public Usuario() {
@@ -25,14 +25,6 @@ public class Usuario {
 		public void setMiPoi(POI miPoi) {
 			this.miPoi = miPoi;
 		}
-
-		public POI getPOIaBuscar() {
-			return POIaBuscar;
-		}
-
-		public void setPOIaBuscar(POI pOIaBuscar) {
-			POIaBuscar = pOIaBuscar;
-		}
 		
 		public Terminal getSistema() {
 			return sistema;
@@ -42,16 +34,6 @@ public class Usuario {
 			this.sistema = sistema;
 		}
 
-		public Terminal getsistema() {
-			return sistema;
-		}
-
-		public void setsistema(Terminal sistema) {
-			this.sistema = sistema;
-		}
-
-
-		
 		//OTROS METODOS
 		
 		public Set<POI> buscarPoi(String palabra){  

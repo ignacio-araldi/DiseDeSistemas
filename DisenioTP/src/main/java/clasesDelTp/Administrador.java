@@ -5,14 +5,14 @@ import java.util.Set;
 
 public class Administrador {
 	
+	private String usuario, contrasenia;
+	private Terminal sistema;
+	
 	public Administrador(String usuario, String contrasenia, Terminal sistema) {
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 		this.sistema = sistema;
 	}
-
-	private String usuario, contrasenia;
-	private Terminal sistema;
 
 	public Administrador(Terminal sistema){
 		this.sistema = sistema;
@@ -49,6 +49,12 @@ public class Administrador {
 	}
 	
 	public void agregarPOI(POI unPOI){
+		unPOI.setId(sistema.getPois().size()+1);
+		sistema.getPois().add(unPOI);
+	}
+	
+	public void agregarPOI(CGP unCGP){
+		unPOI.setId(sistema.getPois().size()+1);
 		sistema.getPois().add(unPOI);
 	}
 	

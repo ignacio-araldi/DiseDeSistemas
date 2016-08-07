@@ -7,6 +7,10 @@ public class ParadaColectivo extends POI{
 			setRadioLimite(1);
 		}
 	
+	public ParadaColectivo () {
+		super();
+	}
+	
     public Boolean calculoDisponibilidad () { 
     		return true;
     	}

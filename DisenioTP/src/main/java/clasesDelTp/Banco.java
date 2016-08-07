@@ -27,6 +27,10 @@ public class Banco extends POI{
 		serviciosC = new HashSet<String>();
     }
     
+    public Banco () {
+    	super();
+    }
+    
     private Banco(String nombre, Float latitud, Float longitud, String sucursal, String gerente, Set<String> serviciosC){
 		this.nombre = nombre;
 		this.latitud = latitud;

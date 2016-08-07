@@ -15,27 +15,27 @@ public class POI {
 	private int comuna,altura;
 	private String calle;
 
-	public POI() {
+	public POI(String nombre, int latitud, int longitud) {
 
-		nombre = "UTN";
 		palabrasClaves = new HashSet<String>();
-		
+		this.nombre = nombre;
+		this.latitud = latitud;
+		this.longitud = longitud;
 		radioLimite=5;
 		tipoCercania=new MismaComuna();
+	}
+	public POI()
+	{
+		
 	}
 	
 	public String getNombre() {
 		return nombre;
 	}
 
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
 
 	public String getTipo() {
 		return tipo;

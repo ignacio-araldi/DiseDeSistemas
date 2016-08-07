@@ -7,5 +7,8 @@ public class Kiosco extends LocalComercial{
 	    setDisponibilidadHoraria(horaA,horaC,diaA,diaC); 
 	    setRadioLimite(2);
 	}
+    public Kiosco () {
+    	super();
+	}
 
 }

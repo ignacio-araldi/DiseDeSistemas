@@ -7,5 +7,8 @@ public class Libreria extends LocalComercial{
 	    setDisponibilidadHoraria(horaA,horaC,diaA,diaC);        
     	setRadioLimite(5);
     } 
+    public Libreria () {
+    	super();
+    } 
 	
 }

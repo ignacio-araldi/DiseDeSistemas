@@ -13,14 +13,7 @@ public class Conexion
          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
          Connection conn = DriverManager.getConnection(db_connect_string);
          System.out.println("Se ha establecido la conexión con la base de datos\n");
-         Statement statement = conn.createStatement();
 
-         ResultSet rs = statement.executeQuery(queryString);
-         System.out.println("ID     Comuna   Zonas                                   Director                      Domicilio                     Telefono    Servicios\n");
-         while (rs.next()) {
-            System.out.println(rs.getString(1)+"      "+rs.getString(2)+"        "+rs.getString(3).substring(0, 40)+""+rs.getString(4).substring(0, 30)+""+rs.getString(5).substring(0, 30)+""+rs.getString(6)+"    "+rs.getString(7));
-
-         }
          System.out.println("\n");
       } catch (Exception e) {
          e.printStackTrace();
