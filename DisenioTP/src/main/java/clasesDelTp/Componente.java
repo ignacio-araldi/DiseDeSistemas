@@ -5,6 +5,6 @@ import java.util.Set;
 
 public interface Componente {
 	
-	public void ejecutar();
+	//public void ejecutar();
 	
 }
