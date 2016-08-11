@@ -15,7 +15,7 @@ public class POI {
 	private int comuna,altura;
 	private String calle;
 
-	public POI(String nombre, int latitud, int longitud) {
+	public POI(String nombre, int longitud, int latitud) {
 
 		palabrasClaves = new HashSet<String>();
 		this.nombre = nombre;
@@ -132,30 +132,31 @@ public class POI {
 		return ((nombre.trim().length()==0)&&(getLongitud()!=0)&&(getLatitud()!=0));
 	}
 	
-	public double aCuantoEstoyDe(double latitud, double longitud){
+	public double aCuantoEstoyDe(double longitudPOI, double latitudPOI){
+		double R = 6372.8; // en kilometros, radio de la tierra
 		double distancia=0;
-		/*
-		double longitud2, latitud2;
-		
-		
-		// el usuario ingresa las coordenadas de dónde quiere ir
-		// las coordenadas de donde se encuentra, longitud y latitud, ya estan con su getter y setter
 
-		longitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese x del punto B al que quiere ir:"));
-
-		latitud2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese y del punto B al que quiere ir:"));
-*/
-		// hace el procesamiento, resta las distancias
-		distancia = Math.hypot(longitud-this.longitud, latitud-this.latitud)/100;
+		// formula de haversine
+		double dLat = Math.toRadians(latitudPOI-this.latitud);
+        double dLon = Math.toRadians(longitudPOI-this.longitud);
+        	
+        double a = Math.pow(Math.sin(dLat / 2),2) + Math.pow(Math.sin(dLon / 2),2) * Math.cos(Math.toRadians(this.latitud)) * Math.cos(Math.toRadians(latitudPOI));
+        double c = 2 * Math.asin(Math.sqrt(a));
+        distancia =  R * c;
+        
+        
 		
-		//muestra los resultados
-		//JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+getLongitud()+","+getLatitud()+") y B("+unaUbicacion.getLongitud()+","+unaUbicacion.getLatitud()+") es ="+distancia);
+		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+getLongitud()+","+getLatitud()+") y B("+longitudPOI+","+latitudPOI+") en kilometros es ="+distancia);
 		return distancia;
 	}
+	
+	
 	
 	public Boolean calculoDeCercania(POI unPoi){
 		return tipoCercania.calculoDeCercania(latitud, longitud, unPoi);
 	}
+	
+	
 	
 	
 	public Boolean calculoDeDisponibilidad(){

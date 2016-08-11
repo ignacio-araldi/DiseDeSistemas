@@ -1,4 +1,5 @@
 package clasesDelTp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,10 +14,6 @@ public class Usuario {
 		}
 		
 		//GET / SET
-		
-		public POI obtenerPOI(){
-			return miPoi;
-		}
 		
 		public POI getMiPoi() {
 			return miPoi;
@@ -36,8 +33,8 @@ public class Usuario {
 
 		//OTROS METODOS
 		
-		public Set<POI> buscarPoi(String palabra){  
-			Set<POI> poisAux=new HashSet<POI>();
+		public ArrayList<POI> buscarPoi(String palabra){  
+			ArrayList<POI> poisAux=new ArrayList<POI>();
 			poisAux.clear();
 			for (POI poi:sistema.getPois()){
 				if(poi.getPalabrasClaves().contains(palabra))

@@ -18,7 +18,7 @@ public class Administrador {
 		this.sistema = sistema;
 	}
 	
-	//GET / SET
+	// GET / SET
 	
 	public String getUsuario() {
 		return usuario;
@@ -53,10 +53,11 @@ public class Administrador {
 		sistema.getPois().add(unPOI);
 	}
 	
+	/*
 	public void agregarPOI(CGP unCGP){
-		unPOI.setId(sistema.getPois().size()+1);
-		sistema.getPois().add(unPOI);
-	}
+		unCGP.setId(sistema.getPois().size()+1);
+		sistema.getPois().add(unCGP);
+	}*/
 	
 	public Boolean modificarPOI(int id, String nombre){//y demas datos
 		for(POI poi:sistema.getPois())

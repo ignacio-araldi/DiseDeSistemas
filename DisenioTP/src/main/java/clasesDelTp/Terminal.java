@@ -62,7 +62,7 @@ public class Terminal {
 			System.out.println("Logueo exitoso\n");
 		}
 		else
-			System.out.println("Usuario o contraseña erroneos\n");
+			System.out.println("Usuario o contraseï¿½a erroneos\n");
 
 
 		}while(!logueado);
@@ -72,8 +72,8 @@ public class Terminal {
 
 		opcion=capt.nextInt();
 		if (opcion==1){
-			System.out.println("A qué categoría pertenece el Poi?\n\n");
-			System.out.println("1-Banco\n2-CGP\n3-Kiosco\n4-Librería\n5-Parada de colectivo\nValor diferente-Otro\n");
+			System.out.println("A quï¿½ categorï¿½a pertenece el Poi?\n\n");
+			System.out.println("1-Banco\n2-CGP\n3-Kiosco\n4-Librerï¿½a\n5-Parada de colectivo\nValor diferente-Otro\n");
 			tipoPoi=capt.nextInt();
 			POI poiAux;
 		     switch (tipoPoi) {
@@ -233,9 +233,14 @@ public class Terminal {
 		sistema.getPois().add(unPoi);
 		sistema.getPois().add(unCgp);
 		
-
+		/* prueba para corroborar que funciona la distancia entre 2 puntos 
+		Usuario guido = new Usuario();
+		guido.setMiPoi(unPoi);
+		guido.getMiPoi().aCuantoEstoyDe(56, 75);
+		*/ 
 		System.out.println("Bienvenido al sistema de busqueda de POIS\n\n");
 
+		
 
 		System.out.println("Es usted administrador?\n-1 Si\n-2 No\n-3 Salir\n");
 		opcion=capt.nextInt();
