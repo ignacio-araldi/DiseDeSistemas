@@ -45,9 +45,10 @@ public class Usuario {
 			return poisAux;
 		}
 		
+		/*
 		Boolean meQuedaCerca(POI unPoi){
 			return miPoi.calculoDeCercania(unPoi);
-		}
+		}*/
 
 		Boolean estaDisponible(POI poi){
 			return poi.calculoDeDisponibilidad();

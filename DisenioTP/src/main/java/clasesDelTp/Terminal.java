@@ -71,8 +71,8 @@ public class Terminal {
 
 		opcion=capt.nextInt();
 		if (opcion==1){
-			System.out.println("A qu� categor�a pertenece el Poi?\n\n");
-			System.out.println("1-Banco\n2-CGP\n3-Kiosco\n4-Librer�a\n5-Parada de colectivo\nValor diferente-Otro\n");
+			System.out.println("A que categoria pertenece el Poi?\n\n");
+			System.out.println("1-Banco\n2-CGP\n3-Kiosco\n4-Libreria\n5-Parada de colectivo\nValor diferente-Otro\n");
 			tipoPoi=capt.nextInt();
 			POI poiAux;
 		     switch (tipoPoi) {
@@ -161,7 +161,7 @@ public class Terminal {
 			
 			if (opcion==2){
 				
-				System.out.println("Ingrese texto a buscar\n\n");
+				System.out.println("Ingrese POI a buscar\n\n");
 				texto=capt.next();
 				poisAux=yo.buscarPoi(texto);
 				if(poisAux.size()==0)
@@ -170,13 +170,12 @@ public class Terminal {
 				{
 					for(POI poi:poisAux){
 						System.out.println("Nombre:"+poi.getNombre()+"\nCalle:"+poi.getCalle()+"\nAltura"+poi.getAltura()+"\n\n"+"La distancia a "+poi.getNombre()+"es:"+yo.getMiPoi().aCuantoEstoyDe(poi.getLatitud(),poi.getLongitud())+"\n");
-						if(yo.getMiPoi().calculoDeCercania(poi))
-							
+						if(yo.getMiPoi().calculoDeCercania(poi, poi.getLongitud(), poi.getLatitud(), poi.getComuna())){
 							System.out.println("Usted esta cerca de "+poi.getNombre()+"\n");
-						else
+						}else{
 							
 							System.out.println("Usted esta lejos de "+poi.getNombre()+"\n");
-
+						}
 					}
 					poisAux.clear();
 				}

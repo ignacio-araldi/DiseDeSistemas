@@ -4,7 +4,13 @@ public class CGP extends POI {
 	
 	private String zonas,director,domicilio,servicios;
 	private int telefono,id;
-	
+			
+	  public Boolean calculoDeCercania(POI unPoi, double longitudPOI, double latitudPOI, int comuna){
+	    	if (unPoi.getComuna()==comuna){
+	    		return true;
+	    	}
+	    	else return false;
+	    }
 
 		public CGP (int horaA, int horaC, int diaA, int diaC) {
 			super();

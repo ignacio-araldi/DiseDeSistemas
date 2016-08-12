@@ -22,7 +22,7 @@ public class POI {
 		this.latitud = latitud;
 		this.longitud = longitud;
 		radioLimite=5;
-		tipoCercania=new MismaComuna();
+		//tipoCercania=new MismaComuna();
 	}
 	public POI()
 	{
@@ -149,14 +149,7 @@ public class POI {
 		JOptionPane.showMessageDialog(null, "La distancia entre los puntos \nA("+getLongitud()+","+getLatitud()+") y B("+longitudPOI+","+latitudPOI+") en kilometros es ="+distancia);
 		return distancia;
 	}
-	
-	
-	
-	public Boolean calculoDeCercania(POI unPoi){
-		return tipoCercania.calculoDeCercania(latitud, longitud, unPoi);
-	}
-	
-	
+
 	
 	
 	public Boolean calculoDeDisponibilidad(){
@@ -187,6 +180,8 @@ public class POI {
 		System.out.println("Nombre:"+nombre+"\nCalle:"+getCalle()+"\nAltura"+getAltura()+"\n\n");//algunos datos de ejemplo
 	}
 
+	// faltaria el metodo para que de acá llame a cada POI particular
+	
 }
 
 

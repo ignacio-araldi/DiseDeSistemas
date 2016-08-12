@@ -69,6 +69,12 @@ public class Banco extends POI{
 		//no se que va aca 
 	}
 
+	public Boolean calculoDeCercania(POI unPoi, double longitudPOI, double latitudPOI, int comuna){
+		if(unPoi.aCuantoEstoyDe(longitudPOI, latitudPOI)<0.5){
+			return true;
+		}
+		else return false;
+	}
 }	
 	
 /*
