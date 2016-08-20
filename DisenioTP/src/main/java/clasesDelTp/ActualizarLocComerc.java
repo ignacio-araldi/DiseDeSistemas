@@ -13,6 +13,20 @@ public class ActualizarLocComerc implements Componente {
 	
 	Terminal sistema=new Terminal();
 	
+	@override 
+	public void agregarProceso(Componente unProceso){
+		
+		System.out.println("No se puede agregar un proceso\n");
+	}
+	
+	
+	@override 
+	public void remover(Componente unProceso){
+		
+		System.out.println("No se puede remover un proceso\n");
+	}
+	
+	@override
 	public void ejecutar(){
 		
 		for (POI poi:sistema.getPois()){

@@ -3,8 +3,12 @@ package clasesDelTp;
 import java.util.HashSet;
 import java.util.Set;
 
-public interface Componente {
+public abstract class Componente {
 	
-	//public void ejecutar();
+	abstract public void ejecutar();
+	
+	abstract public void agregarProceso(Componente unProceso);
+	
+	abstract public void remover(Componente unProceso);
 	
 }
